@@ -12,7 +12,7 @@
         <!--News View Controller-->
         <scene sceneID="tvo-z4-fVw">
             <objects>
-                <viewController id="dil-LI-js0" customClass="NewsViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="dil-LI-js0" customClass="NewsViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Zp-VA-pph"/>
                         <viewControllerLayoutGuide type="bottom" id="e8A-Uu-qyS"/>
@@ -21,8 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ZC-bj-5jn">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ZC-bj-5jn">
                                 <rect key="frame" x="0.0" y="64" width="335" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Q8K-Fd-ofX"/>
                                 </constraints>
@@ -42,8 +43,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Hra-PD-v7S" firstAttribute="top" secondItem="WS5-ba-QhH" secondAttribute="bottom" id="7Cj-8t-MxW"/>
                             <constraint firstAttribute="trailing" secondItem="Hra-PD-v7S" secondAttribute="trailing" id="7wa-IG-mpW"/>
-                            <constraint firstItem="Hra-PD-v7S" firstAttribute="top" secondItem="4ZC-bj-5jn" secondAttribute="bottom" id="WcF-u5-Il9"/>
                             <constraint firstItem="4ZC-bj-5jn" firstAttribute="top" secondItem="7Zp-VA-pph" secondAttribute="bottom" id="aRI-rr-xev"/>
                             <constraint firstItem="WS5-ba-QhH" firstAttribute="leading" secondItem="4ZC-bj-5jn" secondAttribute="trailing" id="bX1-hA-Ict"/>
                             <constraint firstItem="WS5-ba-QhH" firstAttribute="top" secondItem="7Zp-VA-pph" secondAttribute="bottom" id="h6q-yk-YPk"/>
@@ -54,15 +55,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="waM-DN-0PD"/>
+                    <connections>
+                        <outlet property="contentView" destination="Hra-PD-v7S" id="B9C-Ai-jJB"/>
+                        <outlet property="topView" destination="4ZC-bj-5jn" id="Z4d-Ie-Ugr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QVQ-25-GKY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="77.811094452773617"/>
+            <point key="canvasLocation" x="857" y="32"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rs7-YZ-rAy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bIq-el-J25" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bIq-el-J25" customClass="GSNavigationController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lTv-PG-8sa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
