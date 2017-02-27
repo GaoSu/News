@@ -1,0 +1,24 @@
+target'News' do
+  use_frameworks!
+    
+    # Pods for BaoKanIOS
+    
+  pod 'SwiftyJSON', :git => 'https://github.com/IBM-Swift/SwiftyJSON.git'
+  pod 'SnapKit' 
+  pod 'pop'
+  pod 'IQKeyboardManagerSwift'
+  pod 'SVProgressHUD'
+  pod 'YYWebImage'
+  pod 'Alamofire'
+  pod 'SDCycleScrollView'
+  pod 'MJRefresh'
+  pod 'FMDB'
+  pod 'ShareSDK3'
+  pod 'MOBFoundation'
+  pod 'ShareSDK3/ShareSDKUI'
+  pod 'ShareSDK3/ShareSDKPlatforms/QQ'  
+  pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
+  pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
+
+  end
+
