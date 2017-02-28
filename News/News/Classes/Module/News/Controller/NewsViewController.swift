@@ -15,6 +15,9 @@ class NewsViewController: UIViewController {
     
     @IBOutlet weak var contentView: UIScrollView!//内容视图
     
+    var contentOffsetX : CGFloat = 0.0
+    
+    
     fileprivate var selectedArr : [[String : String]]?
     fileprivate var optionalArr : [[String : String]]?
     
@@ -255,8 +258,12 @@ class NewsViewController: UIViewController {
   
     //MARK:点击顶部标签的方法
     @objc fileprivate func didClickTopLabel(_gesture:UITapGestureRecognizer){
+       
+        let titleLabel = _gesture.view as! GSTopLabel
+        contentView.setContentOffset(CGPoint(x: CGFloat(titleLabel.tag ) * contentView.frame.size.width,y:contentView.contentOffset.y), animated: true)
     
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -275,3 +282,93 @@ class NewsViewController: UIViewController {
     */
 
 }
+
+
+//MARK:-scrollView代理方法
+
+extension NewsViewController : UIScrollViewDelegate{
+    
+    //滑动结束触发
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        let  index = Int(scrollView.contentOffset.x / scrollView.bounds.size.width)
+        let titleLabel = topView.subviews[index]
+        var offsetX = titleLabel.center.x - topView.frame.size.width * 0.5
+        let offsetMax = topView.contentSize.width - topView.frame.size.width
+        
+        if offsetX < 0 {
+            offsetX = 0
+        } else if (offsetX > offsetMax){
+        offsetX = offsetMax
+        }
+        
+        //滚动顶部的标题
+        topView.setContentOffset(CGPoint(x: offsetX,y:topView.contentOffset.y), animated: true)
+        // 恢复其他label的缩放
+        for i in 0..<selectedArr!.count {
+            if i != index {
+                let topLabel = topView.subviews[i] as! GSTopLabel
+                topLabel.scale = 0.0
+            }
+        }
+        
+        //添加控制器 - 并预加载控制器 左划 加载下一个，右滑加载上一个
+        let value = (scrollView.contentOffset.x / scrollView.frame.width)
+        
+        var index1 = Int(value)
+        var index2 = Int(value)
+        
+        if scrollView.contentOffset.x - contentOffsetX > 2.0 {
+            index1 = (value - CGFloat(Int(value))) > 0 ? Int(value) + 1 : Int(value)
+            index2 = index1 + 1
+        } else if contentOffsetX - scrollView.contentOffset.x > 2{
+            index1 = (value - CGFloat(Int(value))) < 0 ?  Int(value) - 1 : Int(value)
+            index2 = index1 - 1
+        }
+        
+        if index1 > childViewControllers.count - 1  {
+            index1 = childViewControllers.count - 1
+        }else if index1 < 0{
+            index1 = 0
+        }
+        
+        if  index2 > childViewControllers.count - 1 {
+            index2 = childViewControllers.count - 1
+        }else if index2 < 0 {
+            index2 = 0
+        }
+        
+        //这样预加载，增加用户体验
+        addContentViewController(index: index1)
+        addContentViewController(index: index2)
+        
+    }
+    //
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollViewDidEndScrollingAnimation(scrollView)
+    }
+    //开始拖拽视图
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        contentOffsetX = scrollView.contentOffset.x
+    }
+    //正在滚动
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let value = (scrollView.contentOffset.x / scrollView.frame.width)
+        
+        let leftIndex = Int(value)
+        let rightIndex = leftIndex + 1
+        let scaleRight = value - CGFloat(leftIndex)
+        let scaleLeft = 1 - scaleRight
+        
+        let labelLeft = topView.subviews[leftIndex] as! GSTopLabel
+        labelLeft.scale = scaleLeft
+        
+        if rightIndex < topView.subviews.count {
+            let labelRight = topView.subviews[rightIndex] as! GSTopLabel
+            labelRight.scale = scaleRight
+            
+        }
+       
+    }
+    
+}
+

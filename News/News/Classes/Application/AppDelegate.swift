@@ -26,12 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         // 判断是否有新的版本
-        if isNewVersion() {
-            window?.rootViewController = NewFeatureViewController()
-            
-        }else{
+//        if isNewVersion() {
+//            window?.rootViewController = NewFeatureViewController()
+        
+//        }else{
             window?.rootViewController = MainTabBarController()
-        }
+//        }
         
         window?.makeKeyAndVisible()
         

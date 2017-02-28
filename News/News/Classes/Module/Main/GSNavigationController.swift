@@ -22,7 +22,7 @@ class GSNavigationController: UINavigationController,UIGestureRecognizerDelegate
         navBar.shadowImage = UIImage()
         navBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(red:0.173,  green:0.173,  blue:0.173, alpha:1),NSFontAttributeName: UIFont.systemFont(ofSize: 18)]
         // 全屏的返回手势
-        
+        panGestureBack()
         
         // Do any additional setup after loading the view.
     }

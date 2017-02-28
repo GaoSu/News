@@ -21,6 +21,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZI-iN-Q0Q">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Jo4-Vg-ugc"/>
+                                </constraints>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ZC-bj-5jn">
                                 <rect key="frame" x="0.0" y="64" width="335" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -28,8 +35,11 @@
                                     <constraint firstAttribute="height" constant="40" id="Q8K-Fd-ofX"/>
                                 </constraints>
                             </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hra-PD-v7S">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hra-PD-v7S">
                                 <rect key="frame" x="0.0" y="104" width="375" height="563"/>
+                                <connections>
+                                    <outlet property="delegate" destination="dil-LI-js0" id="tcQ-3z-Qrk"/>
+                                </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WS5-ba-QhH">
                                 <rect key="frame" x="335" y="64" width="40" height="40"/>
@@ -43,18 +53,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZZI-iN-Q0Q" secondAttribute="trailing" id="5kg-wB-Je9"/>
                             <constraint firstItem="Hra-PD-v7S" firstAttribute="top" secondItem="WS5-ba-QhH" secondAttribute="bottom" id="7Cj-8t-MxW"/>
                             <constraint firstAttribute="trailing" secondItem="Hra-PD-v7S" secondAttribute="trailing" id="7wa-IG-mpW"/>
+                            <constraint firstItem="ZZI-iN-Q0Q" firstAttribute="top" secondItem="v0z-tJ-tcV" secondAttribute="top" id="8j7-pU-gvJ"/>
                             <constraint firstItem="4ZC-bj-5jn" firstAttribute="top" secondItem="7Zp-VA-pph" secondAttribute="bottom" id="aRI-rr-xev"/>
                             <constraint firstItem="WS5-ba-QhH" firstAttribute="leading" secondItem="4ZC-bj-5jn" secondAttribute="trailing" id="bX1-hA-Ict"/>
                             <constraint firstItem="WS5-ba-QhH" firstAttribute="top" secondItem="7Zp-VA-pph" secondAttribute="bottom" id="h6q-yk-YPk"/>
                             <constraint firstItem="Hra-PD-v7S" firstAttribute="leading" secondItem="v0z-tJ-tcV" secondAttribute="leading" id="jdC-Ix-P1Z"/>
                             <constraint firstItem="e8A-Uu-qyS" firstAttribute="top" secondItem="Hra-PD-v7S" secondAttribute="bottom" id="lmU-dL-8R5"/>
                             <constraint firstItem="4ZC-bj-5jn" firstAttribute="leading" secondItem="v0z-tJ-tcV" secondAttribute="leading" id="lyA-bh-x2T"/>
+                            <constraint firstItem="ZZI-iN-Q0Q" firstAttribute="leading" secondItem="v0z-tJ-tcV" secondAttribute="leading" id="n4b-VZ-aVJ"/>
                             <constraint firstAttribute="trailing" secondItem="WS5-ba-QhH" secondAttribute="trailing" id="ycE-XZ-ya0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="waM-DN-0PD"/>
+                    <navigationItem key="navigationItem" id="waM-DN-0PD">
+                        <nil key="title"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="Hra-PD-v7S" id="B9C-Ai-jJB"/>
                         <outlet property="topView" destination="4ZC-bj-5jn" id="Z4d-Ie-Ugr"/>
